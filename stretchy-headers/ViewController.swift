@@ -28,5 +28,14 @@ class ViewController: UITableViewController {
         let rect = CGRect(x: 0, y: -headerHeight, width: tableView.bounds.width, height: headerHeight)
         headerView.frame = rect;
     }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var rect = CGRect(x: 0, y: -headerHeight, width: tableView.bounds.width, height: headerHeight)
+        if (tableView.contentOffset.y < -headerHeight) {
+            rect.origin.y = tableView.contentOffset.y
+            rect.size.height = -tableView.contentOffset.y
+        }
+        headerView.frame = rect;
+    }
 }
 
